@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Send Bulk SMS</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1>📱 Bulk Messaging System</h1>
+        <p class="subtitle">Send SMS messages to multiple contacts at once</p>
+
+        <div id="alert" class="alert"></div>
+
+        <div class="sms-balance">
+          <p class="balance-text">SMS Balance</p>
+          <p class="balance-value" id="smsBalance">0</p>
+        </div>
+
+        <form id="messageForm">
+          <div class="form-group">
+            <label for="senderId">Sender ID *</label>
+
+            <select id="senderId" required>
+              <option value="SEND OFF">SEND OFF</option>
+            </select>
+            <div class="help-text">Your registered sender name</div>
+          </div>
+          <div class="form-group">
+            <label for="messageType">Message Type *</label>
+            <select id="messageType" required>
+              <option value="text">Text Message</option>
+              <option value="unicode">Unicode</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea
+              id="message"
+              required
+              placeholder="Type your message here..."
+              cols="3"
+            ></textarea>
+            <div class="help-text">
+              Characters: <span id="charCount">0</span> | SMS:
+              <span id="smsCount">0</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contacts">Phone Numbers *</label>
+            <textarea
+              id="contacts"
+              class="contacts-input"
+              required
+              placeholder="0712345678&#10;0723456789&#10;0734567890"
+            ></textarea>
+            <div class="help-text">
+              Enter one phone number per line (starting with 0)
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="deliveryUrl">Delivery Report URL (Optional)</label>
+            <input
+              type="url"
+              id="deliveryUrl"
+              placeholder="https://your-server.com/delivery-callback"
+            />
+          </div>
+
+          <button type="submit" class="btn" id="submitBtn">
+            Send Messages
+          </button>
+        </form>
+
+        <div class="stats" id="stats" style="display: none">
+          <div class="stat-item">
+            <div class="stat-value" id="totalSent">0</div>
+            <div class="stat-label">Messages Sent</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="totalRecipients">0</div>
+            <div class="stat-label">Recipients</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

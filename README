@@ -1,0 +1,12 @@
+# Bulk Messages
+
+A full-stack application for sending bulk messages.
+
+## Overview
+
+This project provides both backend and frontend components for managing and sending bulk messages to multiple recipients.
+
+## Architecture
+
+- **Backend**: Go
+- **Frontend**: [HTML, CSS, JS]
