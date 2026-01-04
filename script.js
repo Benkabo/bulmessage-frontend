@@ -1,5 +1,8 @@
-const SEND_API_URL = "http://localhost:8080/api/send-bulk-message";
-const SMS_BALANCE_API_URL = "http://localhost:8080/api/get-sms-balance";
+const SEND_API_URL =
+  "https://bulkmessage-backend.onrender.com/api/send-bulk-message";
+const SMS_BALANCE_API_URL =
+  "https://bulkmessage-backend.onrender.com/api/get-sms-balance";
+const HEALTH_CHECK_API = "https://bulkmessage-backend.onrender.com/api/health";
 
 const form = document.getElementById("messageForm");
 const messageInput = document.getElementById("message");
@@ -13,6 +16,7 @@ const stats = document.getElementById("smsCount");
 // Fetch SMS Balance
 document.addEventListener("DOMContentLoaded", () => {
   fetchSMSBalance();
+  getHealthStatus();
 });
 
 // Update character and SMS count
@@ -126,5 +130,29 @@ async function fetchSMSBalance() {
     }
   } catch (error) {
     showAlert(`Error Fetching SMS Balance: ${error.message}`, "error");
+  }
+}
+
+async function getHealthStatus() {
+  const healthStatus = document.getElementById("healtCheck");
+
+  try {
+    const response = await fetch(HEALTH_CHECK_API, {
+      method: "GET",
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      healthStatus.textContent = "RUNNING";
+      healthStatus.style.backgroundColor = "greenyellow";
+    } else {
+      healthStatus.textContent = "STOPPED";
+      healthStatus.style.backgroundColor = "red";
+    }
+  } catch (error) {
+    healthStatus.textContent = "STOPPED";
+    healthStatus.style.backgroundColor = "red";
+    showAlert(`Error checking api health: ${error.message}`, "error");
   }
 }

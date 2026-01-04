@@ -206,3 +206,19 @@ textarea {
   font-size: 12px;
   margin: 4px;
 }
+
+.health {
+  margin-top: 10px;
+}
+
+.health-item {
+  font-size: 14px;
+}
+
+.health-status {
+  margin-left: 5px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: rgb(88, 87, 87);
+}
